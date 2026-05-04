@@ -51,5 +51,6 @@ blocks:
       jobs:
         - name: 'Job #1'
           commands:
+            - cd 3-dependency-scanning
             - pip install pip-audit
             - pip-audit -r requirements.txt
