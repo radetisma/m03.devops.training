@@ -17,7 +17,7 @@ global_job_config:
     commands:
       - checkout
 blocks:
-  - name: "\U0001F9EA Test"
+  - name: 1-sigining
     dependencies: []
     task:
       jobs:
@@ -30,14 +30,16 @@ blocks:
             - gpg --verify artifact.txt.sig artifact.txt
       secrets:
         - name: GPG-RT
-  - name: "\U0001F680 Deploy"
+  - name: 2-sbom
     dependencies:
-      - "\U0001F9EA Test"
+      - 1-sigining
     task:
       jobs:
         - name: "\U0001F4E6 Deploy to Production"
           commands:
-            - echo "Building application..."
-            - echo "Running security checks..."
-            - echo "Deploying to production..."
-            - echo "Deployment completed successfully!"
+            - cd 2-sbom
+            - python -m venv venv
+            - source venv/bin/activate
+            - pip install cyclonedx-bom
+            - cyclonedx-py requirements -o bom.json
+            - artifact push job bom.json
