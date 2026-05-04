@@ -16,6 +16,7 @@ global_job_config:
   prologue:
     commands:
       - checkout
+      - sem-version python 3.12
 blocks:
   - name: 1-sigining
     dependencies: []
