@@ -72,4 +72,4 @@ blocks:
             - python3.12 -m venv venv
             - source venv/bin/activate
             - pip install bandit
-            - bandit -r vulnerable_script.py | true
+            - bandit -r vulnerable_script.py || true
