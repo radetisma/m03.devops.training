@@ -59,3 +59,18 @@ blocks:
             - source venv/bin/activate
             - pip install pip-audit
             - pip-audit -r requirements.txt | true
+  - name: 4-sast
+    dependencies:
+      - 3-dep-scan
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - cd 4-sast
+            - '#sudo apt-get update'
+            - '#sudo apt-get install -y python3.12-venv'
+            - '#python3.12 -m venv venv'
+            - python -m venv venv
+            - source venv/bin/activate
+            - pip install bandit
+            - bandit -r vulnerable_script.py | true
