@@ -38,8 +38,8 @@ blocks:
         - name: "\U0001F4E6 Deploy to Production"
           commands:
             - cd 2-sbom
-            - python -m venv venv
-            - source venv/bin/activate
+            - '#python -m venv venv'
+            - '#source venv/bin/activate'
             - pip install cyclonedx-bom
             - cyclonedx-py requirements -o bom.json
             - artifact push job bom.json
