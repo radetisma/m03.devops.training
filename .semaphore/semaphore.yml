@@ -44,3 +44,12 @@ blocks:
             - pip install cyclonedx-bom
             - cyclonedx-py requirements -o bom.json
             - artifact push job bom.json
+  - name: 3-dep-scan
+    dependencies:
+      - 2-sbom
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - pip install pip-audit
+            - pip-audit -r requirements.txt
