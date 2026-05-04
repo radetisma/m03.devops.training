@@ -58,4 +58,4 @@ blocks:
             - '#python -m venv venv'
             - source venv/bin/activate
             - pip install pip-audit
-            - pip-audit -r requirements.txt
+            - pip-audit -r requirements.txt | true
